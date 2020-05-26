@@ -18,7 +18,7 @@ build:
   noarch: python
   
   entry_points:
-    {% for entry in setup_py['entry_points']['console_scripts'] %}
+    {% for entry in data['entry_points']['console_scripts'] %}
       - {{ entry.split('=')[0].strip() }} = {{ entry.split('=')[1].strip() }}
     {% endfor %}
   
@@ -46,10 +46,8 @@ test:
     - pytest
     - pytest-cov
   commands:
-    - pytest tests
+    - pytest
 
 about:
   home: https://github.com/kmandawe/conda-packaging-test
   summary: CPT is a conda packaging POC
-  license: {{ setup_py.get('license') }}
-  license_file: LICENSE

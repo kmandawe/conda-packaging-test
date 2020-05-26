@@ -13,6 +13,7 @@ def cli(args=None):
         version="cpt %s" % __version__,
     )
 
+    print(args)
     args = p.parse_args(args)
 
     # do something with the args
