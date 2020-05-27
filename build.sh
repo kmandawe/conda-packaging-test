@@ -27,6 +27,7 @@ conda info
 echo "************************** 4. Building Conda Recipe for Project: $PROJECT_NAME *********************************"
 conda build conda.recipe
 conda search -c file://"$CONDA_BIN"/../conda-bld --override-channels $PROJECT_NAME
+conda build purge
 
 echo "************************** 5. Installing $PROJECT_NAME=$PROJECT_VERSION to environment: $ENV_NAME ***************"
 conda install "$PROJECT_NAME=$PROJECT_VERSION" -y
@@ -35,4 +36,4 @@ echo "************************** 6. Packaging whole environment: $ENV_NAME *****
 mkdir -p dist
 conda pack -n $ENV_NAME -o "dist/$PROJECT_NAME-$PROJECT_VERSION.tar.gz"
 
-echo "************************** Done Building $PROJECT_NAME! ********************************************************"
+echo "************************** Done Building $PROJECT_NAME **********************************************************"
