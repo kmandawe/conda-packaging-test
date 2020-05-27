@@ -3,7 +3,9 @@ set -e
 
 PROJECT_NAME=cpt
 PROJECT_VERSION=$(<VERSION)
-MAVEN_VERSION="$PROJECT_VERSION"-SNAPSHOT
+# shellcheck disable=SC2001
+VERSION_TRIMMED=$(echo "$PROJECT_VERSION" | sed 's/^[a-zA-Z]*//g')
+MAVEN_VERSION="$VERSION_TRIMMED"-SNAPSHOT
 GROUP_ID=com.cheetahdigital.rse
 RELEASES_URL="${NEXUS_RELEASES:=http://localhost:8081/repository/maven-releases}"
 SNAPSHOTS_URL="${NEXUS_SNAPSHOTS:=http://localhost:8081/repository/maven-snapshots}"
@@ -19,7 +21,7 @@ do
         -r|--release)
         NEXUS_URL=$RELEASES_URL
         echo "NEXUS_URL set to: $NEXUS_URL"
-        MAVEN_VERSION=$PROJECT_VERSION
+        MAVEN_VERSION=$VERSION_TRIMMED
         echo "MAVEN_VERSION set to: $MAVEN_VERSION"
         shift # Remove --release from processing
         ;;

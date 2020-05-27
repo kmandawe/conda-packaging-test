@@ -36,4 +36,4 @@ echo "************************** 6. Packaging whole environment: $ENV_NAME *****
 mkdir -p dist
 conda pack -n $ENV_NAME -o "dist/$PROJECT_NAME-$PROJECT_VERSION.tar.gz"
 
-echo "************************** Done Building $PROJECT_NAME **********************************************************"
+echo "************************** Done Building $PROJECT_NAME-$PROJECT_VERSION *****************************************"
