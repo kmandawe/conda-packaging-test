@@ -1477,7 +1477,13 @@ def get_versions(verbose=False):
 
 def get_version():
     """Get the short version string for this project."""
-    return get_versions()["version"]
+    version = get_versions()["version"].replace("-", "_")
+    return version
+
+
+def print_version():
+    with open("VERSION", "w") as f:
+        print(get_version(), file=f)
 
 
 def get_cmdclass():
@@ -1820,3 +1826,5 @@ if __name__ == "__main__":
         errors += scan_setup_py()
         if errors:
             sys.exit(1)
+    elif cmd == "version":
+        print_version()
